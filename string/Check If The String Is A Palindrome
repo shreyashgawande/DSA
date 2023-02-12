@@ -1,0 +1,38 @@
+Code:
+#include <bits/stdc++.h> 
+char to_lower(char ch){
+    if(ch>='a' && ch<='z'){
+        return ch;
+    }
+    else{
+        return ch-'A'+'a';
+    }
+}
+bool checkPalindrome(string s)
+{
+    int len = s.length();
+    int a=0;
+    int e=len-1;
+    while(a<=e){
+        if(!isalnum(s[a])){
+            a++;
+        }
+        else if(!isalnum(s[e])){
+            e--;
+        }
+        else{
+        if(to_lower(s[a])!= to_lower(s[e])){
+            // cout<<"abe hut"<<endl;
+            return false; 
+        }
+        else{
+        e--;
+        a++;}
+        }
+
+    }
+    return true;
+}
+
+Link :
+\https://www.codingninjas.com/codestudio/problems/check-if-the-string-is-a-palindrome_1062633?utm_source=youtube&utm_medium=affiliate&utm_campaign=love_babbar_5
