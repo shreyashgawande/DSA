@@ -1,0 +1,22 @@
+Code : 
+#include <bits/stdc++.h> 
+#include <algorithm>
+using namespace std;
+void reverse (int i,int j,string& str){
+	if(i>j){
+		return;
+	}
+	swap(str[i],str[j]);
+	i++;
+	j--;
+	reverse(i,j,str);
+}
+string reverseString(string str)
+{
+	// Write your code here.
+	reverse(0,str.length()-1,str);
+	return str;
+}
+
+Link:
+https://www.codingninjas.com/codestudio/problems/reverse-the-string_799927?leftPanelTab=0&utm_source=youtube&utm_medium=affiliate&utm_campaign=love_babbar_13
