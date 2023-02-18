@@ -1,0 +1,45 @@
+Code :
+#include <bits/stdc++.h> 
+
+int partition(vector<int>& arr,int s,int e){
+    int i=s;
+    int j=e+1;
+    int pivot = arr[s];
+
+    do{
+        do{
+            i++;
+
+        }while(arr[i]<pivot);
+        do{
+            j--;
+
+        }while(arr[j]>pivot);
+        if(i<j){
+            swap(arr[i],arr[j]);
+        }
+    }while(i<j);
+    arr[s]=arr[j];
+    arr[j]=pivot;
+    return j;
+
+}
+
+void solve(vector<int>& arr,int s,int e){
+  if (s >= e) {
+      return ;
+  }
+    int p = partition(arr, s, e);
+    solve(arr, s, p - 1);
+    solve(arr, p + 1, e); 
+   
+}
+vector<int> quickSort(vector<int> arr)
+{
+    solve(arr ,0,arr.size()-1);
+    return arr;
+    // Write your code here.
+}
+
+Link"
+https://www.codingninjas.com/codestudio/problems/quick-sort_983625?leftPanelTab=0&utm_source=youtube&utm_medium=affiliate&utm_campaign=love_babbar_15
