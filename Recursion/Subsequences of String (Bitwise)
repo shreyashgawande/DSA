@@ -1,0 +1,25 @@
+Code:
+#include <bits/stdc++.h> 
+vector<string> subsequences(string str){
+	
+	// Write your code here
+	vector<string>ans;
+	int n = str.length();
+	int powSize = pow(2,n);
+
+	for(int i=0;i<powSize;i++){
+		string curr ="";
+		for(int j=0;j<n;j++){
+			
+			if(i & (1<<j)){
+				curr.push_back(str[j]);
+			}
+		}
+		if(curr.length()>0){
+			ans.push_back(curr);
+		}
+	}
+	return ans;
+}
+Link:
+https://www.codingninjas.com/codestudio/problems/subsequences-of-string_985087?leftPanelTab=1&utm_source=youtube&utm_medium=affiliate&utm_campaign=love_babbar_16
