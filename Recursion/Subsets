@@ -1,0 +1,25 @@
+Code : 
+class Solution {
+public:
+
+    void subset(vector <int> nums,vector <int> curr,int i,vector<vector <int>>& ans ){
+        if(i>=nums.size()){
+            ans.push_back(curr);
+            return;
+        }
+        subset(nums,curr,i+1,ans);
+        curr.push_back(nums[i]);
+        subset(nums,curr,i+1,ans);
+
+    }
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> ans;
+        vector<int> curr;
+        int i=0;
+        subset(nums,curr,i,ans);
+        return ans;
+    }
+};
+
+Link :
+https://leetcode.com/problems/subsets/description/
