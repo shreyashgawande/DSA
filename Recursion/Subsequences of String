@@ -1,0 +1,26 @@
+Code :
+#include <bits/stdc++.h> 
+void subset(string nums,string curr,int i,vector <string>& ans ){
+        if(i>=nums.length()){
+          if (curr.length() > 0) {
+            ans.push_back(curr);
+          }
+            return;
+        }
+        subset(nums,curr,i+1,ans);
+        curr.push_back(nums[i]);
+        subset(nums,curr,i+1,ans);
+
+    }
+vector<string> subsequences(string str){
+	
+	// Write your code here
+	vector<string> ans;
+    string curr="";
+        int i=0;
+        subset(str,curr,i,ans);
+        return ans;
+    
+}
+Link:
+https://www.codingninjas.com/codestudio/problems/subsequences-of-string_985087?leftPanelTab=0&utm_source=youtube&utm_medium=affiliate&utm_campaign=love_babbar_16
