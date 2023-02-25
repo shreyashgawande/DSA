@@ -1,0 +1,89 @@
+Approach 1:
+
+Code:
+#include <bits/stdc++.h> 
+#include <bits/stdc++.h> 
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+       class Node 
+        { 
+        public:
+            int data;
+            Node *next;
+            Node(int data) 
+            {
+               this->data = data;
+              this->next = NULL;
+            }
+        };
+
+*****************************************************************/
+int getLength(Node* head){
+    int cnt =0;
+    Node* temp = head;
+
+    while(temp!=NULL){
+        temp=temp->next;
+        cnt++;
+    }
+    return cnt;
+}
+Node *findMiddle(Node *head) {
+    // Write your code here
+    if(head ==NULL || head->next == NULL){
+        return head;
+    }
+    int cnt = getLength(head);
+    int mid = cnt/2;
+    int ct=0;
+
+    Node* temp = head;
+    while(ct<mid){
+        temp=temp->next;
+        ct++;
+    }
+    return temp;
+
+}
+Link : 
+https://www.codingninjas.com/codestudio/problems/middle-of-linked-list_973250?source=youtube&campaign=Lovebabbarcodestudio_24thJan&utm_source=youtube&utm_medium=affiliate&utm_campaign=Lovebabbarcodestudio_24thJan&leftPanelTab=0
+
+
+
+Approach 2(Efficient):
+Code:
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        if(head==NULL || head->next == NULL){
+            return head;
+        }
+        ListNode* slow = head;
+        ListNode* fast = head->next;
+        
+        while(fast!= NULL){
+            fast = fast->next ;
+            if(fast!=NULL){
+                fast = fast->next;
+            }
+            slow = slow->next;
+
+        }
+        return slow;
+    }
+};
+
+Link:
+https://leetcode.com/problems/middle-of-the-linked-list/description/
