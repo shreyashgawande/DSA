@@ -1,0 +1,141 @@
+Code :
+
+
+#include <iostream>
+using namespace std;
+class node{
+  public:
+  int data;
+  node* next;
+  node(int d){
+      this->data=d;
+      this->next =NULL;
+  }
+  ~node(){
+      int val = this->data;
+      if(this->next !=NULL){
+          delete next ;
+          this->next = NULL;
+      }
+      cout<<"Deleted node with value of "<<val<<endl;
+  }
+};
+void insertAtHead(node* &head,int d){
+    node* temp = new node(d);
+    temp->next=head;
+    head = temp;
+}
+void insertAtTail(node* &tail ,int d){
+    node* temp = new node(d);
+    temp->next = tail->next;
+    tail->next = temp;
+    tail = temp;
+}
+void insertAtPosition(node* &head,node* &tail,int d,int p){
+    int ct=1;
+    if(p==1){
+        insertAtHead(head,d);
+        return;
+    }
+    node* temp = head;
+    node* node1 = new node(d);
+    while(ct<p-1){
+        temp=temp->next;
+        ct++;
+    }
+    if(temp->next == NULL){
+        insertAtTail(tail,d);
+        return;
+    }
+    node1->next= temp->next;
+    temp->next = node1;
+}
+void deletion(node* &head,node* &tail,int p){
+    //deleting head node
+    if(p==1){
+        node* temp = head;
+        head= head->next;
+        temp->next = NULL;
+        delete temp;
+    }
+    //deleting other nodes
+    else{
+        node* curr = head;
+        node* prev = NULL;
+        int cnt=1;
+        
+        while(cnt<p){
+            prev =curr;
+            curr = curr->next;
+            cnt++;
+        }
+        if(curr->next == NULL){
+            tail= prev;
+        }
+        prev->next = curr->next;
+        curr->next =NULL;
+        delete curr;
+    }
+}
+void print(node* &head){
+    node* temp =head;
+    
+    while(temp!= NULL){
+        cout<<temp->data<<" ";
+        temp = temp->next;
+    }
+}
+
+int main()
+{
+    cout<<"Hello World"<<endl;
+    node* node1 = new node(10);
+    node* head = node1;
+    node* tail = node1;
+    
+    // print(head);
+    // cout<<endl;
+    // insertAtHead(head,23);
+    // print(head);
+    // cout<<endl; insertAtHead(head,45);
+    // print(head);
+    // cout<<endl;
+   
+    //  insertAtPosition(head,tail,50,4);
+    // print(head);
+    // cout<<endl;
+   
+    
+     insertAtTail(tail,23);
+    print(head);
+    cout<<endl;
+         insertAtTail(tail,22);
+    print(head);
+    cout<<endl;
+         insertAtTail(tail,21);
+    print(head);
+    cout<<endl;
+         insertAtTail(tail,20);
+    print(head);
+    cout<<endl;
+    cout<<head->data;
+    
+    cout<<endl;
+    cout<<tail->data;
+    cout<<endl;
+     deletion(head,tail,5);
+    print(head);
+    cout<<endl;
+    
+    cout<<head->data;
+    
+    cout<<endl;
+    cout<<tail->data;
+    
+    
+
+    return 0;
+}
+
+
+
