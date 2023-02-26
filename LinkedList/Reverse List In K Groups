@@ -1,0 +1,46 @@
+Code:
+#include <bits/stdc++.h> 
+/****************************************************************
+    Following is the Linked List node structure
+
+    class Node
+    {
+    public:
+        int data;
+        Node *next;
+        Node(int data)
+        {
+            this->data = data;
+            this->next = NULL;
+        }
+    };
+
+*****************************************************************/
+
+
+Node* kReverse(Node* head, int k) {
+    // Write your code here.
+    if(head==NULL){
+        return NULL;
+
+    }
+    int count =1;
+    Node*prev=NULL;
+    Node*forward =NULL;
+    Node*curr = head;
+    //k rev
+    while(curr != NULL && count<=k){
+        forward = curr->next;
+        curr->next = prev;
+        prev=curr;
+        curr = forward;
+        count++;
+    }
+    if(head!=NULL){
+        head->next = kReverse(forward,k);
+    }
+    return prev;
+}
+
+Link:
+https://www.codingninjas.com/codestudio/problems/reverse-list-in-k-groups_983644?leftPanelTab=1&campaign=Lovebabbar_codestudio_26thjan&utm_source=youtube&utm_medium=affiliate&utm_campaign=Lovebabbar_codestudio_26thjan
