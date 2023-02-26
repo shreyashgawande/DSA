@@ -1,0 +1,84 @@
+Code:
+#include <bits/stdc++.h> 
+/****************************************************************
+    Following is the class structure of the Node class:
+    class Node
+    {
+    public:
+        int data;
+        Node *next;
+        Node(int data)
+        {
+            this->data = data;
+            this->next = NULL;
+        }
+    };
+*****************************************************************/
+
+Node *removeDuplicates(Node *head)
+{
+    // // Write your code here
+    // if(head==NULL){
+    //     return NULL;
+
+    // }
+    // else{
+    //     Node* curr = head;
+    //     while(curr!=NULL){
+    //         Node* temp = curr->next;
+    //         Node* prev = curr;
+    //         while(temp!=NULL){
+    //             if(temp->data==curr->data){
+    //                 //delete temp
+    //                 Node* toDelete = temp;
+
+    //                 prev->next = temp->next;
+    //                 temp=temp->next;
+    //                 delete(toDelete);
+
+    //             }
+    //             else{
+    //                 prev = temp;
+    //                 temp=temp->next;
+
+    //             }
+    //         }
+    //         curr = curr->next;
+    //     }
+    //     return head;
+    // }
+    //Above code n^2;
+
+    //Approach 2 using map 
+    //O(n) time and space;
+    if(head ==NULL){
+        return NULL;
+    }
+    else{
+
+    
+
+    unordered_map <int,bool> visited;//must use unordered_map as it is faster
+    Node* curr = head;
+    Node* prev = NULL;
+
+    while(curr!=NULL){
+        if(visited[curr->data] == true){
+            //delete curr;
+            Node* toDelete = curr;
+            prev->next= curr->next;
+            curr=curr->next;
+            delete(toDelete);
+
+        } else {
+          visited[curr->data] = true;
+          prev = curr;
+          curr = curr->next;
+        }
+    }
+    return head;
+    }
+}
+
+Link:
+https://www.codingninjas.com/codestudio/problems/remove-duplicates-from-unsorted-linked-list_1069331?source=youtube&campaign=YouTube_Lovebabbar29thJan&utm_source=youtube&utm_medium=affiliate&utm_campaign=YouTube_Lovebabbar29thJan&leftPanelTab=0
