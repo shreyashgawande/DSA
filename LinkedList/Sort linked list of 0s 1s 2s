@@ -1,0 +1,114 @@
+Code:
+/********************************
+    class Node
+    {
+    public:
+        int data;
+        Node *next;
+        Node(int data)
+        {
+            this->data = data;
+            this->next = NULL;
+        }
+    };
+
+********************************/
+
+// Node* sortList(Node *head)
+// {
+//     // Write your code here.
+//     int z=0;
+//     int o=0;
+//     int t=0;
+
+//     Node* temp =head;
+
+//     while(temp!=NULL){
+//         if(temp->data==0){
+//             z++;
+
+//         }
+//         else if(temp->data==1){
+//             o++;
+//         }
+//         else{
+//             t++;
+//         }
+//         temp=temp->next;
+//     }
+
+//     temp =head;
+//     while(temp!=NULL){
+//         if(z){
+//             temp->data=0;
+//             z--;
+//         }
+//         else if (o){
+//             temp->data=1;
+//             o--;
+//         }
+//         else{
+//             temp->data=2;
+//             t--;
+//         }
+//         temp=temp->next;
+//     }
+//     return head;
+    
+
+
+// }
+
+void insertAtTail(Node* &tail,Node* curr){
+    tail->next = curr;
+    tail=curr;
+}
+Node* sortList(Node *head)
+{
+    // Write your code here.
+    Node*curr = head;
+    
+    Node* zhead = new Node(-1);
+    Node* ztail = zhead;
+    Node* ohead = new Node(-1);
+    Node* otail = ohead;
+    Node* thead = new Node(-1);
+    Node* ttail = thead;
+
+    //make three linked list
+    while(curr!=NULL){
+        int val = curr->data;
+
+    if(val==0){
+        insertAtTail(ztail,curr);
+    }
+    else if(val==1){
+        insertAtTail(otail,curr);
+    }
+    else if (val ==2){
+        insertAtTail(ttail,curr);
+
+    }
+    curr=curr->next;
+
+    }
+
+    //merge three ll
+    if(ohead->next != NULL){
+        ztail->next=ohead->next;
+    }
+    else{
+        ztail->next = thead->next;
+    }
+    otail->next = thead->next;
+    ttail->next = NULL;
+
+    head=zhead->next;
+    delete (zhead);
+    delete (ohead);
+    delete (thead);
+    return head;
+}
+
+Link:
+https://www.codingninjas.com/codestudio/problems/sort-linked-list-of-0s-1s-2s_1071937?leftPanelTab=0&campaign=YouTube_Lovebabbar31stJan2021&utm_source=youtube&utm_medium=affiliate&utm_campaign=YouTube_Lovebabbar31stJan2021
