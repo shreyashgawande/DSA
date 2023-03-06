@@ -1,0 +1,22 @@
+Code:
+#include <bits/stdc++.h> 
+
+vector<vector<int>> pairSum(vector<int> &arr, int sum){
+   // Write your code here.
+   sort(arr.begin(),arr.end());
+	int s=0;
+	int end = arr.size()-1;
+	vector<vector<int>> ans;
+	for(int i=0;i<=end;i++){
+		for(int j=i+1;j<=end;j++){
+			if(arr[i]+arr[j] == sum){
+				ans.push_back({arr[i],arr[j]});
+			}
+			
+		}
+	}
+	return ans;
+}
+
+Link:
+\https://www.codingninjas.com/codestudio/problems/pair-sum_697295?leftPanelTab=0
