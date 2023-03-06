@@ -1,0 +1,123 @@
+Code:
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+class node{
+  public:
+  int data;
+  node* next ;
+  
+  node(int d){
+      this->data =d;
+      this->next =NULL;
+  }
+};
+class stak{
+    public:
+    node* top ;
+    node* head;
+    
+    stak(){
+        this->top= NULL;
+        this->head= NULL;
+    }
+    
+    void push(int element){
+        node* temp = new node(element);
+        if(head==NULL){
+            head = temp;
+            top=head;
+        }
+        else{
+            node* temp1 =head;
+            while(temp1->next !=NULL){
+                temp1=temp1->next;
+            }
+            temp1->next = temp;
+            top=temp;
+            
+        }
+    }
+    void pop(){
+        if(top == NULL){
+            cout<<"Stack Underflow"<<endl;
+            return;
+        }
+        else{
+            node* temp = head;
+            while(temp->next != top){
+                temp=temp->next;
+            }
+            top=temp;
+            temp = top->next;
+            top->next =NULL;
+            temp->next =NULL;
+            delete temp;
+            cout<<"POP successful"<<endl;
+            
+        }
+    }
+    int peek(){
+        if(top==NULL){
+            cout<<"Stack is empty"<<endl;
+            return -1;
+        }
+        else{
+            return top->data;
+        }
+    }
+    void print(){
+        node* temp = head;
+        while(temp!=NULL){
+            cout<<temp->data<<" ";
+            temp=temp->next;
+        }
+        cout<<endl;
+    }
+    bool isEmpty(){
+        return (top==NULL);
+    }
+};
+int main()
+{
+    stak st;
+     cout << st.peek() << endl;
+     st.push(22);
+    st.push(43);
+    st.push(44);
+    st.push(22);
+    st.push(43);
+    st.push(44);
+
+    cout << st.peek() << endl;
+ st.print();
+    st.pop();
+
+    cout << st.peek() << endl;
+ st.print();
+    st.pop();
+
+    cout << st.peek() << endl;
+ st.print();
+    st.pop();
+
+    cout << st.peek() << endl;
+    st.print();
+
+    if(st.isEmpty()) {
+        cout << "Stack is Empty mere dost " << endl;
+    }
+    else{
+        cout << "Stack is not Empty mere dost " << endl;
+    }
+
+    return 0;
+}
