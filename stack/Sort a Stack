@@ -1,0 +1,29 @@
+Code :
+#include <bits/stdc++.h> 
+void insert(stack<int> &st,int x){
+	//base case (stack cha top ha less ahe than x or stack empty)
+	if(st.empty() || st.top()<x){
+		st.push(x);
+		return;
+	}
+	int num = st.top();
+	st.pop();
+	insert(st,x);
+	st.push(num);
+
+}
+void sortStack(stack<int> &stack)
+{
+	// Write your code here
+	//base case (stack empty ahe ka )
+	if(stack.empty()){
+		return ;
+
+	}
+	int num = stack.top();
+	stack.pop();
+	sortStack(stack);
+	insert(stack,num);
+}
+Link :
+https://www.codingninjas.com/codestudio/problems/sort-a-stack_985275?topList=love-babbar-dsa-sheet-problems&leftPanelTab=0&campaign=Lovebabbarcodestudio&utm_source=youtube&utm_medium=affiliate&utm_campaign=Lovebabbarcodestudio
