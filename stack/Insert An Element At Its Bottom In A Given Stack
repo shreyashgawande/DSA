@@ -1,0 +1,23 @@
+Code:
+#include <bits/stdc++.h>
+void solve(stack<int>& mystack, int x){
+    //base case (end la alo alyavr push kra x)
+    if(mystack.empty()){
+        mystack.push(x);
+        return;
+    }
+
+    int num = mystack.top();
+    mystack.pop();
+    solve(mystack,x);
+    mystack.push(num);
+
+} 
+stack<int> pushAtBottom(stack<int>& myStack, int x) 
+{
+    // Write your code here.
+    solve(myStack,x);
+    return myStack;
+}
+Link:
+https://www.codingninjas.com/codestudio/problems/insert-an-element-at-its-bottom-in-a-given-stack_1171166?topList=love-babbar-dsa-sheet-problems&leftPanelTab=0&campaign=Lovebabbarcodestudio&utm_source=youtube&utm_medium=affiliate&utm_campaign=Lovebabbarcodestudio
