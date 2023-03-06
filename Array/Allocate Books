@@ -1,0 +1,47 @@
+Code:
+#include <bits/stdc++.h> 
+bool isp(vector<int> arr,int n,int mid,int m){
+    int req=1;
+    int sum=0;
+    
+    for(int i=0;i<n;i++){
+        if((sum+arr[i])<=mid){
+            
+            sum=arr[i]+sum;
+        }
+        else{
+            req++;
+            if((req>m)||(arr[i]>mid)){
+                return false;
+}
+            sum = arr[i];
+        }
+    }
+    return true;
+}
+int allocateBooks(vector<int> arr, int n, int m) {
+    // Write your code here.
+    int s=0;
+    int sum=0;
+    int ans=-1;
+    for(int i=0;i<n;i++){
+        sum=sum+arr[i];
+    }
+//     cout<<sum<<endl;
+   int e=sum;
+    int mid= s+ ((e-s)/2);
+    
+    while(s<=e){
+        if(isp(arr,n,mid,m)){
+            ans=mid;
+            e=mid-1;
+        }
+        else{
+            s=mid+1;
+        }
+        mid= s+((e-s)/2);
+    }
+    return ans;
+}
+Link:
+https://www.codingninjas.com/codestudio/problems/allocate-books_1090540?leftPanelTab=0
