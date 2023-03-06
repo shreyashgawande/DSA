@@ -1,0 +1,27 @@
+Code:
+
+void insertAtBottom(stack<int> &st,int x){
+    //base case (bottom la alo alyavr x push kr)
+    if(st.empty()){
+        st.push(x);
+        return;
+
+    }
+    int num= st.top();
+    st.pop();
+    insertAtBottom(st,x);
+    st.push(num);
+}
+void reverseStack(stack<int> &stack) {
+    // Write your code here
+    //base case (stack empty parat ye)
+    if(stack.empty()){
+        return;
+    }
+    int num= stack.top();
+    stack.pop();
+    reverseStack(stack);
+    insertAtBottom(stack,num);
+}
+Link :
+https://www.codingninjas.com/codestudio/problems/reverse-stack-using-recursion_631875?topList=love-babbar-dsa-sheet-problems&leftPanelTab=0&campaign=Lovebabbarcodestudio&utm_source=youtube&utm_medium=affiliate&utm_campaign=Lovebabbarcodestudio
