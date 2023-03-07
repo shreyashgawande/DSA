@@ -1,0 +1,23 @@
+Code:
+#include <stack>
+vector<int> nextSmallerElement(vector<int> &arr, int n)
+{
+    stack<int> st;
+    vector<int> ans(n);
+    st.push(-1);//initialize stack with -1
+    //will traverse from end
+    for(int i=n-1;i>=0;i--){
+        int curr = arr[i];
+        //pop from stack until small element is found
+        while(st.top() >= curr){
+            
+            st.pop();
+        }
+        ans[i]=st.top();//found less element push to ans
+
+        st.push(curr); //make top of stack as curr
+    }
+    return ans;
+}
+Link:
+https://www.codingninjas.com/codestudio/problems/next-smaller-element_1112581?topList=love-babbar-dsa-sheet-problems&leftPanelTab=0&campaign=Lovebabbarcodestudio&utm_source=youtube&utm_medium=affiliate&utm_campaign=Lovebabbarcodestudio
