@@ -1,0 +1,68 @@
+Code:
+class Solution {
+    private:
+      vector<int> nextSmallerValue(vector<int> arr,int n){
+          stack<int> st;
+    vector<int> ans(n);
+    st.push(-1);//initialize stack with -1
+    //will traverse from end
+    for(int i=n-1;i>=0;i--){
+        int curr = arr[i];
+        //pop from stack until small element is found
+        while( st.top()!= -1 && arr[st.top()] >= curr){
+            
+            st.pop();
+        }
+        ans[i]=st.top();//found less element push to ans
+
+        st.push(i); //make top of stack as curr
+    }
+    return ans;
+
+      }
+      vector<int> prevSmallerValue(vector<int> arr ,int n){
+            stack<int> st;
+    vector<int> ans(n);
+    st.push(-1);//initialize stack with -1
+    //will traverse from end
+    for(int i=0;i<n;i++){
+        int curr = arr[i];
+        //pop from stack until small element is found
+        while( st.top()!= -1 && arr[st.top()] >= curr){
+            
+            st.pop();
+        }
+        ans[i]=st.top();//found less element push to ans
+
+        st.push(i); //make top of stack as curr
+    }
+    return ans;
+
+      }
+public:
+    int largestRectangleArea(vector<int>& heights) {
+        int n = heights.size();
+        vector<int> next;
+        next = nextSmallerValue(heights,n);
+        vector<int> prev;
+        prev = prevSmallerValue(heights,n);
+        int area = INT_MIN;
+      
+
+        for(int i=0;i<n;i++){
+            int length = heights[i];
+           
+            if(next[i]==-1){
+                next[i]=n;
+            }
+
+             int breadth = next[i]-prev[i]-1;
+           
+            int newArea = length * breadth ;
+            area = max(area,newArea);
+        }
+        return area;
+    }
+};
+Link:
+https://leetcode.com/problems/largest-rectangle-in-histogram/description/
